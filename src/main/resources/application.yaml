@@ -1,0 +1,4 @@
+app.name: defaultAppName
+beanJobName : app
+
+masterLocation: '122'
