@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service
  */
 @Service
 class App extends Job {
+
   @Autowired
   val spark: SparkSession = null
 

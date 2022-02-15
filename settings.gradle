@@ -1,2 +1,5 @@
 rootProject.name = 'sparkAlchemy'
 
+include 'launcher'
+include 'sparkApp'
+
