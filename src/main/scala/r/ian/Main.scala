@@ -1,8 +1,7 @@
 package r.ian
 
 import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.{EnableAutoConfiguration, SpringBootApplication}
-import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.boot.autoconfigure.SpringBootApplication
 import r.ian.spark.job.Job
 
 /**
@@ -10,19 +9,18 @@ import r.ian.spark.job.Job
  * Date: 10.02.2022
  */
 @SpringBootApplication
-@EnableAutoConfiguration
 class Main
 
-object Main extends App {
-  private val context: ConfigurableApplicationContext = SpringApplication.run(classOf[Main])
+object Main {
 
-//  def main(args: Array[String]): Unit = {
-//
-//
-//    val context = new AnnotationConfigApplicationContext(classOf[SpringConf])
-//
-////    context.getEnvir
-//    //TODO bean by param
-    context.getBean("app").asInstanceOf[Job].run
-//  }
+  private val JOB_BEAN_NAME : String = "jobBeanName";
+  private val params = scala.collection.mutable.Map[String, String]()
+
+  def main(args: Array[String]): Unit = {
+    val applicationContext = SpringApplication.run(classOf[Main])
+    args.map(a => a.split(":"))
+        .foreach(pair => params.put(pair(0),pair(1)))
+
+    applicationContext.getBean(params.getOrElse(JOB_BEAN_NAME, "app")).asInstanceOf[Job].run
+  }
 }

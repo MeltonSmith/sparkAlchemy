@@ -1,0 +1,3 @@
+app:
+  name: defaultAppNameStandAlone
+  masterLocation: spark://EPRUPETW09AA:7077
