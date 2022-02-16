@@ -3,7 +3,7 @@ package r.ian.configuration
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.SparkSession.Builder
 import org.springframework.beans.factory.annotation.{Autowired, Value}
-import org.springframework.context.annotation.{Bean, ComponentScan, Configuration, PropertySource}
+import org.springframework.context.annotation.{Bean, ComponentScan, Configuration, DependsOn, PropertySource}
 import org.springframework.core.env.Environment
 
 /**

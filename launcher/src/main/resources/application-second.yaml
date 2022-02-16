@@ -1,0 +1,13 @@
+sparkConf:
+  eventLog:
+    enabled: true
+    dir: file:///usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/history
+  history:
+    fs:
+      logDirectory: file:///usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/history
+  driver:
+    memory: 1g
+    extraJavaOptions: -Dspring.profiles.active=standalone
+
+sparkEnv:
+  SPARK_DIST_CLASSPATH: /usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/common/lib/*:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/common/*:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/tools/lib/azure-storage-7.0.0.jar:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/tools/lib/azure-keyvault-core-1.0.0.jar:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/tools/lib/wildfly-openssl-1.0.7.Final.jar:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/tools/lib/hadoop-azure-3.2.2.jar:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/hdfs:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/hdfs/lib/*:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/hdfs/*:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/mapreduce/lib/*:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/mapreduce/*:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/yarn:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/yarn/lib/*:/usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/customClassPath/yarn/*

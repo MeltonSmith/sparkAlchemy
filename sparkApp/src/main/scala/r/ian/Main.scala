@@ -1,5 +1,6 @@
 package r.ian
 
+import org.slf4j.{Logger, LoggerFactory}
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import r.ian.spark.job.Job
@@ -13,6 +14,7 @@ class Main
 
 object Main {
 
+  private val LOGGER: Logger = LoggerFactory.getLogger(classOf[Main])
   private val JOB_BEAN_NAME : String = "jobBeanName";
   private val params = scala.collection.mutable.Map[String, String]()
 
@@ -21,6 +23,15 @@ object Main {
     args.map(a => a.split(":"))
         .foreach(pair => params.put(pair(0),pair(1)))
 
-    applicationContext.getBean(params.getOrElse(JOB_BEAN_NAME, "app")).asInstanceOf[Job].run
+
+    LOGGER.info("Spring active profiles:")
+    val profiles = applicationContext.getEnvironment.getActiveProfiles
+
+    if (profiles.isEmpty)
+      LOGGER.info("default")
+    else
+      profiles.foreach(profile => LOGGER.info(profile))
+
+    applicationContext.getBean(params(JOB_BEAN_NAME)).asInstanceOf[Job].run
   }
 }

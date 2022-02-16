@@ -1,11 +1,15 @@
+import com.github.jengelman.gradle.plugins.shadow.transformers.*
+
 plugins {
     id 'scala'
     id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'org.springframework.boot' version '2.6.3'
 }
 
-apply plugin: 'scala'
+//apply plugin: 'scala'
+//apply plugin: "com.github.johnrengelman.shadow"
 
-group 'org.example'
+group 'r.ian'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -20,37 +24,49 @@ configurations {
 dependencies {
     implementation 'org.scala-lang:scala-library:2.12.6'
     implementation ('org.apache.spark:spark-sql_2.12:3.1.1') {
+        //on spark class path
         exclude group: 'com.google.code.gson', module: 'gson'
     }
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.6.3'
-
+    implementation (group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.6.3') {
+        //spark has slf4-log4j impl on classpath
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+//        exclude group: 'org.yaml', module: 'snakeyaml'
+    }
     testImplementation 'org.scalatest:scalatest_2.12:3.1.1'
     testImplementation 'org.scalatestplus:junit-4-12_2.13:3.1.2.0'
 }
 
-configurations {
-    all {
-        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
-    }
-}
+//configurations {
+//    all {
+//        exclude group: 'ch.qos.logback', module: 'logback-classic'
+////        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+//    }
+//}
 
 test {
     useJUnitPlatform()
 }
 
-jar {
-    duplicatesStrategy = "exclude"
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    } {
-        exclude "META-INF/*.SF"
-        exclude "META-INF/*.DSA"
-        exclude "META-INF/*.RSA"
-    }
-}
+//jar {
+//    duplicatesStrategy = "exclude"
+//    from {
+//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//    } {
+//        exclude "META-INF/*.SF"
+//        exclude "META-INF/*.DSA"
+//        exclude "META-INF/*.RSA"
+//    }
+//}
 
 shadowJar {
-    manifest {
-        attributes 'Main-Class': 'r.ian.Main'
+    zip64 true
+    //for correct META-INF
+    mergeServiceFiles()
+    append 'META-INF/spring.handlers'
+    append 'META-INF/spring.schemas'
+    append 'META-INF/spring.tooling'
+    transform(PropertiesFileTransformer) {
+        paths = ['META-INF/spring.factories' ]
+        mergeStrategy = "append"
     }
 }
