@@ -1,6 +1,7 @@
 package r.ian.config
 
 import org.apache.spark.launcher.SparkLauncher
+import org.slf4j.{Logger, LoggerFactory}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.{Bean, Configuration}
 
@@ -13,6 +14,8 @@ import scala.collection.JavaConverters.mapAsScalaMapConverter
 @Configuration
 class SpringConf {
 
+  private val LOGGER: Logger = LoggerFactory.getLogger(classOf[SpringConf])
+
   @Autowired
   var sparkProperties: SparkProperties = _
 
@@ -22,14 +25,14 @@ class SpringConf {
       .setAppResource("/Users/Ian_Rakhmatullin/IdeaProjects/sparkAlchemy/sparkApp/build/libs/sparkApp-1.0-SNAPSHOT-all.jar")
       .setMainClass("r.ian.Main")
       .setMaster("spark://EPRUPETW09AA:7077")
-      .setConf(SparkLauncher.DEPLOY_MODE, "cluster")
+//      .setConf(SparkLauncher.DEPLOY_MODE, "cluster")
       .addAppArgs("jobBeanName:app")
 
     //additional params from yaml file
     for ((key, value) <- sparkProperties.getSparkConf.asScala)
       launcher.setConf("spark.".concat(key), value)
 
-    launcher
+    launcher.redirectToLog(LOGGER.getName)
   }
 
 }

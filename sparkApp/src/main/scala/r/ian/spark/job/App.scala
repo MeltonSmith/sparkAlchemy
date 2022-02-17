@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service
 @Service
 class App extends Job {
 
-  @Autowired
-  val spark: SparkSession = null
+  var jobName = "app"
 
   def run(): Unit = {
 
@@ -21,6 +20,8 @@ class App extends Job {
     //      .option("header", "true")
     //      .option("inferSchema", "true")
     //      .csv("file:///Users/Ian_Rakhmatullin/Desktop/FedEx/Sam/Hierarchy/SampleData/entity2.csv")
+
+    val spark = buildSparkSession
 
     spark.sparkContext.parallelize(1 to 10)
       .take(3)

@@ -7,6 +7,8 @@ import java.util.{Map => JavaMap}
 import scala.beans.BeanProperty
 
 /**
+ * A bean responsible for parsing from yaml files
+ *
  * Created by: mSmith
  * Date: 17.02.2022
  */

@@ -32,6 +32,7 @@ object Main {
     else
       profiles.foreach(profile => LOGGER.info(profile))
 
+
     applicationContext.getBean(params(JOB_BEAN_NAME)).asInstanceOf[Job].run
   }
 }

@@ -14,16 +14,11 @@ class LauncherMain
 
 object LauncherMain {
 
-    private val LOGGER: Logger = LoggerFactory.getLogger(classOf[LauncherMain])
-
     def main(args: Array[String]): Unit = {
         val applicationContext = SpringApplication.run(classOf[LauncherMain])
 
         val launcher = applicationContext.getBean("sparkLauncher").asInstanceOf[SparkLauncher]
-
-        val sparkProcess = launcher.launch
-
-        sparkProcess.waitFor()
+        launcher.launch.waitFor()
     }
 
 }
