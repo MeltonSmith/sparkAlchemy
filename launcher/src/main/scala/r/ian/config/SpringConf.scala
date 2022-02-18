@@ -17,18 +17,17 @@ class SpringConf {
   private val LOGGER: Logger = LoggerFactory.getLogger(classOf[SpringConf])
 
   @Autowired
-  var sparkProperties: SparkProperties = _
+  val sparkProperties: SparkProperties = null
 
   @Bean
   def sparkLauncher : SparkLauncher = {
     val launcher = new SparkLauncher(sparkProperties.getSparkEnv)
-      .setAppResource("/Users/Ian_Rakhmatullin/IdeaProjects/sparkAlchemy/sparkApp/build/libs/sparkApp-1.0-SNAPSHOT-all.jar")
+      .setAppResource(sparkProperties.jarPath)
       .setMainClass("r.ian.Main")
-      .setMaster("spark://EPRUPETW09AA:7077")
-//      .setConf(SparkLauncher.DEPLOY_MODE, "cluster")
-      .addAppArgs("jobBeanName:app")
+      .setMaster(sparkProperties.master)
+      .addAppArgs(sparkProperties.args)
 
-    //additional params from yaml file
+    //additional params from yaml file for spark overriding defaults
     for ((key, value) <- sparkProperties.getSparkConf.asScala)
       launcher.setConf("spark.".concat(key), value)
 

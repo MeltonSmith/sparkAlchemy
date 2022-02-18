@@ -1,7 +1,5 @@
 package r.ian.spark.job
 
-import org.apache.spark.sql.SparkSession
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 /**

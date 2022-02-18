@@ -1,1 +1,0 @@
-java -jar build/libs/sparkApp-1.0-SNAPSHOT-all.jar

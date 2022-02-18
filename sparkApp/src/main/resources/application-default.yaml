@@ -1,3 +1,2 @@
 app:
-  name: defaultAppName
   masterLocation: local[*]

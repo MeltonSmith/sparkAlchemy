@@ -14,6 +14,7 @@ class Main
 
 object Main {
 
+  //TODO fix logging
   private val LOGGER: Logger = LoggerFactory.getLogger(classOf[Main])
   private val JOB_BEAN_NAME : String = "jobBeanName";
   private val params = scala.collection.mutable.Map[String, String]()

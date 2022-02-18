@@ -19,28 +19,25 @@ class SpringConf {
 
   /**
    * For default profile - runs local mode
-   * @return
+   * @return sparkSessionBuilder for local mode
    */
   @Bean
   @Profile(Array("default"))
   def localSparkSessionBuilder() : SparkSession.Builder = {
      SparkSession.builder()
-//       .appName(env.getProperty("app.name"))
+       //FIXME
        .master(env.getProperty("app.masterLocation"))
-//       .getOrCreate
   }
 
   /**
-   * Standalone mode
-   * Params should be taken from spark submit
-   * @return
+   * Others nonLocal mode
+   * Params should be taken from spark submit, here, they do not take any effect
+   * @return sparkSessionBuilder
    */
   @Bean
-  @Profile(Array("standalone"))
+  @Profile(Array("nonLocal"))
   def sparkSessionBuilder() : SparkSession.Builder = {
-    SparkSession.builder()
-//      .appName(env.getProperty("app.name"))
-//      .getOrCreate
+      SparkSession.builder()
   }
 
 }
