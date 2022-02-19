@@ -105,6 +105,9 @@ This projects contains two modules:
    gradlew sparkApp:shadowJar
    ```  
 
+   * launch your spark job with the launcher in your IDE a spring app. You can use both client and cluster deploy modes. See parametrization section.
+ 
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -123,6 +126,7 @@ Sections in these yaml files:
 * sparkEnv may contain various ENV variables needed for spark, usually they are declared in spark-env.sh.
 * submitConf sections contains options for spark submit command, needed for the launcher, currently it's master, jar and args for your jar.
 
+Mandatory arg for your jar: jobBeanName:{className}. Spring will launch run() method of this bean.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
