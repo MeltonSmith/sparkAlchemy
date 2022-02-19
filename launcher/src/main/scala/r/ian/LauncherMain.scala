@@ -1,7 +1,6 @@
 package r.ian
 
 import org.apache.spark.launcher.SparkLauncher
-import org.slf4j.{Logger, LoggerFactory}
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
@@ -14,10 +13,12 @@ class LauncherMain
 
 object LauncherMain {
 
+    private val launcherBeanName = "sparkLauncher"
+
     def main(args: Array[String]): Unit = {
         val applicationContext = SpringApplication.run(classOf[LauncherMain])
 
-        val launcher = applicationContext.getBean("sparkLauncher").asInstanceOf[SparkLauncher]
+        val launcher = applicationContext.getBean(launcherBeanName).asInstanceOf[SparkLauncher]
         launcher.launch.waitFor()
     }
 

@@ -19,11 +19,14 @@ class SpringConf {
   @Autowired
   val sparkProperties: SparkProperties = null
 
+  /**
+   * @return Bean for launching a spark job from jar with spark submit programmatically
+   */
   @Bean
   def sparkLauncher : SparkLauncher = {
     val launcher = new SparkLauncher(sparkProperties.getSparkEnv)
       .setAppResource(sparkProperties.jarPath)
-      .setMainClass("r.ian.Main")
+      .setMainClass("r.ian.Main") //class in a jar with @SpringBootApp annotation
       .setMaster(sparkProperties.master)
       .addAppArgs(sparkProperties.args)
 

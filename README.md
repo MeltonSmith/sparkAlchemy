@@ -33,7 +33,7 @@ Project for running spark jobs written as spring beans.
 
 2 main modules:
 * [SparkApp](sparkApp) should contain your logic for spark. If you want to run it locally, you can simply run it like a common spring boot app.
-* [Launcher](launcher) module can send your uber jar to spark.
+* [Launcher](launcher) module can send your uber jar to spark. (currently only standalone mode is available)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -41,7 +41,7 @@ Project for running spark jobs written as spring beans.
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section lists major frameworks/libraries used to bootstrap this project.
 
 * [Vanilla spark](https://spark.apache.org/)
 * [Spring boot](https://spring.io/projects/spring-boot)
@@ -110,14 +110,20 @@ This projects contains two modules:
 
 
 <!-- Parametrization -->
-## Parametrization TODO
+## Parametrization
 
 [SparkApp](sparkApp) has only 1 spring profile - default, which is dedicated to local mode running.
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+[Launcher](launcher) currently has 2 profiles:
+1) [default](launcher/src/main/resources/application-default.yaml) - if you want to run a jar with spark job in local mode
+2) [standalone](launcher/src/main/resources/application-standalone.yaml) - sends a jar with spark job to standalone cluster
+
+Sections in these yaml files:
+* sparkConf contains spark.conf.... properties. Get familiar with all of them here: [link](https://spark.apache.org/docs/latest/configuration.html)
+* sparkEnv may contain various ENV variables needed for spark, usually they are declared in spark-env.sh.
+* submitConf sections contains options for spark submit command, needed for the launcher, currently it's master, jar and args for your jar.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
