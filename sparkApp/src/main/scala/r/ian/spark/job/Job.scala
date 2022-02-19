@@ -5,18 +5,23 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 /**
+ * Main trait for a spark job
+ *
  * Created by: mSmith
  * Date: 10.02.2022
  */
 @Service
 trait Job {
 
-  var jobName: String
+  /**
+   * jobName for a spark job
+   */
+  val jobName: String
 
   @Autowired
   val sparkBuilder: SparkSession.Builder = null
 
-  def buildSparkSession: SparkSession = {
+  final def buildSparkSession: SparkSession = {
     sparkBuilder.appName(jobName).getOrCreate()
   }
 

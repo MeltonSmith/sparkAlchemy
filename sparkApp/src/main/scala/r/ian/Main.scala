@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import r.ian.spark.job.Job
 
 /**
+ * Main spring boot ap for sparkApp module
+ *
  * Created by: mSmith
  * Date: 10.02.2022
  */
@@ -14,7 +16,7 @@ class Main
 
 object Main {
 
-  //TODO fix logging
+  //TODO fix logging when running directly from sparkApp
   private val LOGGER: Logger = LoggerFactory.getLogger(classOf[Main])
   private val JOB_BEAN_NAME : String = "jobBeanName";
   private val params = scala.collection.mutable.Map[String, String]()

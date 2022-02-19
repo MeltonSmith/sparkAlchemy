@@ -29,7 +29,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Project for running spark jobs written as spring beans.
+Project for running spark jobs written as spring beans. The main purpose of this project is conveniece for spark jobs to be run
+
 
 2 main modules:
 * [SparkApp](sparkApp) should contain your logic for spark. If you want to run it locally, you can simply run it like a common spring boot app.
@@ -98,7 +99,7 @@ This projects contains two modules:
    * launch spark in standalone mode somewhere (the only 1 nonLocal option for now)
    ```sh
    sh $SPARK_HOME/sbin/start-master.sh
-   sh $SPARK_HOME/sbin/start-worker.sh spark://EPRUPETW09AA:7077
+   sh $SPARK_HOME/sbin/start-worker.sh {masterURL e.g. spark://1.1.1.1:7077}
    ```  
    * build an uber jar of sparkApp module    
     ```sh
@@ -117,7 +118,7 @@ This projects contains two modules:
 
 [SparkApp](sparkApp) has only 1 spring profile - default, which is dedicated to local mode running.
 
-[Launcher](launcher) currently has 2 profiles:
+[Launcher](launcher) currently has 2 spring profiles:
 1) [default](launcher/src/main/resources/application-default.yaml) - if you want to run a jar with spark job in local mode
 2) [standalone](launcher/src/main/resources/application-standalone.yaml) - sends a jar with spark job to standalone cluster
 
