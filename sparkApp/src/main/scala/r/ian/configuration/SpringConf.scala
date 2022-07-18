@@ -1,10 +1,8 @@
 package r.ian.configuration
 
-import org.apache.spark.launcher.SparkLauncher
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.SparkSession.Builder
-import org.springframework.beans.factory.annotation.{Autowired, Value}
-import org.springframework.context.annotation.{Bean, ComponentScan, Configuration, DependsOn, Profile, PropertySource}
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.{Bean, Configuration, Profile}
 import org.springframework.core.env.Environment
 
 /**

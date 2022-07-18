@@ -1,10 +1,10 @@
 sparkConf:
   eventLog:
-    enabled: true
-    dir: file:///usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/history
+    enabled: false
+    dir: file:///usr/local/hadoop-3.3.3/spark-3.3.0-bin-without-hadoop/localHistory
   history:
     fs:
-      logDirectory: file:///usr/local/hadoop-3.2.2/spark-3.1.1-bin-without-hadoop/history
+      logDirectory: file:///usr/local/hadoop-3.3.3/spark-3.3.0-bin-without-hadoop/localHistory
   driver:
     memory: 2g
     extraJavaOptions: -Dspring.profiles.active=default

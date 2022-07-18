@@ -10,9 +10,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.scala-lang:scala-library:2.12.6'
+    implementation 'org.scala-lang:scala-library:2.12.12'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.6.3'
-    implementation 'org.apache.spark:spark-launcher_2.12:3.1.1'
+    implementation 'org.apache.spark:spark-launcher_2.12:3.3.0'
 
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'

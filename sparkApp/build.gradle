@@ -19,14 +19,16 @@ configurations {
 }
 
 dependencies {
-    implementation 'org.scala-lang:scala-library:2.12.6'
-    implementation ('org.apache.spark:spark-sql_2.12:3.1.1') {
+    implementation 'org.scala-lang:scala-library:2.12.12'
+    implementation ('org.apache.spark:spark-sql_2.12:3.3.0') {
         //on spark class path
         exclude group: 'com.google.code.gson', module: 'gson'
     }
     implementation (group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.6.3') {
         //spark has slf4-log4j impl on classpath
         exclude group: 'ch.qos.logback', module: 'logback-classic'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+        exclude group: 'org.slf4j', module: 'jul-to-slf4j'
 //        exclude group: 'org.yaml', module: 'snakeyaml'
     }
     testImplementation 'org.scalatest:scalatest_2.12:3.1.1'
